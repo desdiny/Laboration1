@@ -24,20 +24,28 @@ imp(A, B) :- \+ A ; A, B.
 % or(far(benny, abba), far(benny, abba)). = false
 or(A, B) :- A ; B.
 
-% Unit test for and
+% Neg-function, test-cases:
+% neg(far(abba, benny)). = false
+% neg(far(benny, abba)). = true
+neg(A) :- \+ A.
+
+% Unit test for and()
 testAnd :- and(far(abba, benny), far(abba, benny)), 
 	\+ and(far(abba, benny), far(benny, abba)),
 	\+ and(far(benny, abba), far(abba, benny)).
 
-% Unit test for imp
+% Unit test for imp()
 testImp :- \+ imp(far(abba, benny), far(benny, abba)),
 	imp(far(abba, benny), far(abba, benny)),
 	imp(far(benny, abba), far(abba, benny)),
 	imp(far(benny, abba), far(benny, abba)).
 
-% Unit test for or
+% Unit test for or()
 testOr :- or(far(abba, benny), far(abba, benny)),
 	or(far(abba, benny), far(benny, abba)),
 	or(far(benny, abba), far(abba, benny)),
 	\+ or(far(benny, abba), far(benny, abba)).
 
+% Unit test for neg()
+testNeg :- \+ neg(far(abba, benny)),
+	neg(far(benny, abba)).
